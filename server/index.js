@@ -20,19 +20,22 @@ io.on("connection", (socket) => {
 
   socket.on("join_room", (data) => {
     socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
+    // console.log(data)
   });
 
   socket.on("send_move", (data) => {
     socket.to(data.room).emit("receive_move", data);
+    // console.log(data)
   });
 
   socket.on("send_typing", (data) => {
     socket.to(data.room).emit("receive_typing", data);
-    console.log(data)
+    // console.log(data)
   });
 });
 
